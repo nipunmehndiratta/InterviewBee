@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InterviewBee
 
-## Getting Started
+InterviewBee is a web application that helps users schedule and manage meetings. The application integrates with Google Calendar for seamless scheduling and provides instant meeting links.
 
-First, run the development server:
+## Features
 
+- Google OAuth authentication
+- Instant meeting generation
+- Scheduled meetings with calendar integration
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm or yarn package manager
+- A Google Cloud Platform account with OAuth 2.0 credentials
+
+### Local Development Setup
+
+1. Clone the repository:
+```bash
+git clone git@github.com:nipunmehndiratta/InterviewBee.git
+cd InterviewBee
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Configure environment variables:
+   - Copy `.env.example` to `.env.local`
+   - Fill in the required environment variables:
+     - `GOOGLE_ID`: Your Google OAuth Client ID
+     - `GOOGLE_SECRET`: Your Google OAuth Client Secret
+     - `NEXTAUTH_URL`: Your application URL (http://localhost:3000 for local development)
+     - `NEXTAUTH_SECRET`: A random string for NextAuth.js session encryption
+
+4. Start the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Build the application:
+```bash
+npm run build
+# or
+yarn build
+```
 
-## Learn More
+2. Deploy to Vercel:
+   - Connect your GitHub repository to Vercel
+   - Configure environment variables in the Vercel dashboard
+   - Deploy from the Vercel dashboard or using the Vercel CLI
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture & Technical Decisions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Framework**: Next.js 14 with App Router
+- **Authentication**: NextAuth.js with Google OAuth
+- **Styling**: Tailwind CSS for responsive design
+- **Calendar Integration**: Google Calendar API
+- **Type Safety**: TypeScript for better development experience
 
-## Deploy on Vercel
+### Key Architectural Decisions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **App Router & Server Components**
+   - Utilizing Next.js 14's App Router for better routing and layouts
+   - Server Components for improved performance and SEO
+   - Client Components where interactivity is needed
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Authentication Flow**
+   - Google OAuth for secure authentication
+   - NextAuth.js for session management
+   - Protected API routes and pages
+
+3. **Calendar Integration**
+   - Direct integration with Google Calendar API
+   - Automatic event creation and management
+
+## MVP Scope & Limitations
+
+### Current Scope
+
+1. **Authentication**
+   - Google OAuth sign-in only
+   - Basic session management
+
+2. **Meeting Management**
+   - Basic scheduling functionality
+   - Calendar integration
+
+3. **User Interface**
+   - Responsive design
+   - Basic interface
+
+### Limitations & Future Improvements
+
+1. **Authentication**
+   - Limited to Google OAuth
+   - No email/password authentication
+
+2. **Meeting Features**
+   - Basic formats only
+   - Limited customization options
+   - No persistent meeting history
+
+3. **Calendar Integration**
+   - Basic scheduling only
+   - No calendar conflict resolution
+
+## Contributing
+
+Contributions are welcome! Please read our contributing guidelines and submit pull requests for any improvements.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
