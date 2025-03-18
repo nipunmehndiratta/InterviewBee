@@ -1,5 +1,6 @@
 import { google } from 'googleapis';
 import { Session } from 'next-auth';
+import { calendar_v3 } from 'googleapis';
 
 export interface CustomSession extends Session {
   accessToken?: string;
@@ -25,7 +26,7 @@ export interface MeetingEvent {
   endDateTime: Date;
 }
 
-export async function createMeetingEvent(calendar: any, event: MeetingEvent) {
+export async function createMeetingEvent(calendar: calendar_v3.Calendar, event: MeetingEvent) {
   const calendarEvent = {
     summary: event.summary,
     start: {

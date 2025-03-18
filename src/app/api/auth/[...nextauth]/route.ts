@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { Session } from "next-auth";
 import { CustomSession } from "@/lib/google-calendar";
+import { Account } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,7 +18,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account }: { token: JWT; account: any }) {
+    async jwt({ token, account }: { token: JWT; account: Account | null }) {
       if (account) {
         token.accessToken = account.access_token;
       }
