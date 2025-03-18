@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth-config';
 import { CustomSession, createGoogleCalendarClient, createMeetingEvent } from '@/lib/google-calendar';
 import { checkAuth, createErrorResponse } from '@/lib/api-utils';
 
