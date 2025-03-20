@@ -11,9 +11,9 @@ export async function POST(request: Request) {
     const authError = checkAuth(session);
     if (authError) return authError;
 
-    const { date, time } = await request.json();
+    const { date, time, timezone } = await request.json();
 
-    // Combine date and time into a single ISO string
+    // Combine date and time into a single ISO string with timezone
     const startDateTime = new Date(`${date}T${time}`);
     const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // 1 hour duration
 
@@ -23,6 +23,7 @@ export async function POST(request: Request) {
       summary: 'Scheduled Meeting',
       startDateTime,
       endDateTime,
+      timezone: timezone || 'UTC', // Use provided timezone or fallback to UTC
     });
 
     return NextResponse.json({ meetLink });

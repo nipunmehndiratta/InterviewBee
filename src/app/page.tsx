@@ -56,7 +56,11 @@ const Home = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ date, time }),
+        body: JSON.stringify({ 
+          date, 
+          time,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone 
+        }),
       });
       
       if (!response.ok) {
