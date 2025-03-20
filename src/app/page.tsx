@@ -81,6 +81,24 @@ const Home = () => {
     }
   };
 
+  const resetInstantMeeting = () => {
+    setInstantMeeting(null);
+    setError(null);
+    setIsCreatingInstant(false);
+  };
+
+  const resetScheduledMeeting = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    setScheduledMeeting(null);
+    setError(null);
+    setIsScheduling(false);
+    // Reset form fields
+    const form = document.querySelector('form') as HTMLFormElement;
+    if (form) {
+      form.reset();
+    }
+  };
+
   if (!session) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-background to-secondary/30">
@@ -149,7 +167,21 @@ const Home = () => {
                 Start Now
               </AppButton>
               
-              {instantMeeting && <MeetingLink url={instantMeeting} />}
+              {instantMeeting && (
+                <div className="space-y-4 animate-fade-in">
+                  <MeetingLink url={instantMeeting} />
+                  <div className="flex justify-end">
+                    <AppButton 
+                      onClick={resetInstantMeeting}
+                      variant="outline"
+                      size="sm"
+                      className="hover:bg-primary hover:text-primary-foreground"
+                    >
+                      Create New Meeting
+                    </AppButton>
+                  </div>
+                </div>
+              )}
             </div>
           </MeetingCard>
 
@@ -218,6 +250,16 @@ const Home = () => {
                 
                 <div className="mt-3 pt-3 border-t border-border">
                   <MeetingLink url={scheduledMeeting.link} />
+                  <div className="flex justify-end mt-4">
+                    <AppButton 
+                      onClick={resetScheduledMeeting}
+                      variant="outline"
+                      size="sm"
+                      className="hover:bg-primary hover:text-primary-foreground"
+                    >
+                      Schedule Another Meeting
+                    </AppButton>
+                  </div>
                 </div>
               </div>
             )}
